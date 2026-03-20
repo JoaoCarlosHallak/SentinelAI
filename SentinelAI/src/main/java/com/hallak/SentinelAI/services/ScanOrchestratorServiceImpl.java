@@ -28,6 +28,6 @@ public class ScanOrchestratorServiceImpl implements ScanOrchestratorService{
 
         }
 
-
+    return new ScanDTO();
     }
 }

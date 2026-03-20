@@ -8,6 +8,6 @@ public class XssScanServiceImpl implements XssScanService {
 
     @Override
     public ScanDTO scan(String target) {
-        return null;
+        return new ScanDTO();
     }
 }
