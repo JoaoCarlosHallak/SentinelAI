@@ -1,6 +1,6 @@
 package com.hallak.SentinelAI.controllers;
 
-import com.hallak.SentinelAI.dtos.ScanDTO;
+import com.hallak.SentinelAI.dtos.HttpResponseDataDTO;
 import com.hallak.SentinelAI.dtos.ScanRequest;
 import com.hallak.SentinelAI.services.ScanOrchestratorService;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
@@ -22,7 +22,7 @@ public class ScanController {
 
 
     @PostMapping(value = "scan")
-    public ResponseEntity<ScanDTO> newScan(@RequestBody ScanRequest scanRequest) {
+    public ResponseEntity<HttpResponseDataDTO> newScan(@RequestBody ScanRequest scanRequest) {
         return new ResponseEntity<>(scanOrchestratorService.newScan(scanRequest), HttpStatus.OK);
     }
 

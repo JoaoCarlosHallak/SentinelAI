@@ -1,6 +1,6 @@
 package com.hallak.SentinelAI.services;
 
-import com.hallak.SentinelAI.dtos.HttpResponseData;
+import com.hallak.SentinelAI.dtos.HttpResponseDataDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -21,7 +21,7 @@ public class HttpClientServiceImpl implements HttpClientService {
     }
 
 
-    public Mono<HttpResponseData> sendRequest(String url) {
+    public Mono<HttpResponseDataDTO> sendRequest(String url) {
 
         long start = System.currentTimeMillis();
 
@@ -31,7 +31,7 @@ public class HttpClientServiceImpl implements HttpClientService {
                             response.bodyToMono(String.class)
                                     .map(body -> {
                                         long time = System.currentTimeMillis() - start;
-                                        return new HttpResponseData(body,
+                                        return new HttpResponseDataDTO(body,
                                                 response.statusCode().value(),
                                                 time,
                                                 body.length());
