@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/")
 public class ScanController {
@@ -22,7 +24,7 @@ public class ScanController {
 
 
     @PostMapping(value = "scan")
-    public ResponseEntity<HttpResponseDataDTO> newScan(@RequestBody ScanRequest scanRequest) {
+    public ResponseEntity<List<HttpResponseDataDTO>> newScan(@RequestBody ScanRequest scanRequest) throws Exception {
         return new ResponseEntity<>(scanOrchestratorService.newScan(scanRequest), HttpStatus.OK);
     }
 

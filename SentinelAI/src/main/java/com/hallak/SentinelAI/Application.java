@@ -1,7 +1,8 @@
 package com.hallak.SentinelAI;
 
 import com.hallak.SentinelAI.services.LoadPayloadsService;
-	import org.springframework.beans.factory.annotation.Autowired;
+import com.hallak.SentinelAI.services.xss.XssScanService;
+import org.springframework.beans.factory.annotation.Autowired;
 	import org.springframework.boot.CommandLineRunner;
 	import org.springframework.boot.SpringApplication;
 	import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,21 +10,22 @@ import com.hallak.SentinelAI.services.LoadPayloadsService;
 	import java.util.List;
 	@SpringBootApplication public class Application implements CommandLineRunner {
 
-		private final LoadPayloadsService loadPayloadsService;
+		private final XssScanService  xssScanService;
 
 
 		@Autowired
-		public Application(LoadPayloadsService loadPayloadsService) {
-			this.loadPayloadsService = loadPayloadsService;}
+		public Application(XssScanService xssScanService) {
+			this.xssScanService = xssScanService;
+		}
+
 
 		public static void main(String[] args) {
 			SpringApplication.run(Application.class, args);}
 
 		@Override
 		public void run(String... args) throws Exception {
-			List<String> payloads = loadPayloadsService.loadPayloads("payloads/xss.txt");
+			xssScanService.scan("https://www.hallak.com");
 
-			payloads.forEach(System.out::println);
 
 
 

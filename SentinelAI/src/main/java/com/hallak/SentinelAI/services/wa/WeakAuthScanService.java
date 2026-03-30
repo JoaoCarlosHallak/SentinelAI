@@ -1,4 +1,4 @@
-package com.hallak.SentinelAI.services;
+package com.hallak.SentinelAI.services.wa;
 
 public interface WeakAuthScanService {
     void scan(String target);

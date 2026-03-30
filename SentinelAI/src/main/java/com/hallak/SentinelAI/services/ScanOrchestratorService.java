@@ -1,9 +1,11 @@
 package com.hallak.SentinelAI.services;
 
-import com.hallak.SentinelAI.dtos.ScanDTO;
+import com.hallak.SentinelAI.dtos.HttpResponseDataDTO;
 import com.hallak.SentinelAI.dtos.ScanRequest;
 
+import java.util.List;
+
 public interface ScanOrchestratorService {
-    ScanDTO newScan(ScanRequest scanRequest);
+    List<HttpResponseDataDTO> newScan(ScanRequest scanRequest) throws Exception;
 
 }
