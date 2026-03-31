@@ -1,4 +1,4 @@
 package com.hallak.SentinelAI.dtos;
 
-public record HttpResponseDataDTO(String body, int statusCode, long responseTime, int contentLength) {
+public record HttpResponseDataDTO(String url, String body, int statusCode, long responseTime, int contentLength) {
 }

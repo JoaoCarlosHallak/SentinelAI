@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-Application<SentinelAI>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.hallak.SentinelAI.Application",
+            "projectName": "SentinelAI",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

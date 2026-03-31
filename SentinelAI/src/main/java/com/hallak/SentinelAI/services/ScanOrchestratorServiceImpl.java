@@ -1,5 +1,10 @@
 package com.hallak.SentinelAI.services;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.hallak.SentinelAI.dtos.HttpResponseDataDTO;
 import com.hallak.SentinelAI.dtos.ScanRequest;
 import com.hallak.SentinelAI.dtos.ScanType;
@@ -18,10 +23,6 @@ import com.hallak.SentinelAI.services.sqli.SqlInjectionScanService;
 import com.hallak.SentinelAI.services.ssrf.SsrfScanService;
 import com.hallak.SentinelAI.services.wa.WeakAuthScanService;
 import com.hallak.SentinelAI.services.xss.XssScanService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class ScanOrchestratorServiceImpl implements ScanOrchestratorService {

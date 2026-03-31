@@ -3,9 +3,11 @@ package com.hallak.SentinelAI.services.xss;
 
 import com.hallak.SentinelAI.dtos.HttpResponseDataDTO;
 
-import java.util.List;
+import reactor.core.publisher.Flux;
+
+
 
 public interface XssScanService {
 
-    List<HttpResponseDataDTO> scan(String target) throws Exception;
+    Flux<HttpResponseDataDTO> scanAndBasicFilter(String target) throws Exception;
 }

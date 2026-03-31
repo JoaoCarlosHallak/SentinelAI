@@ -1,12 +1,14 @@
 package com.hallak.SentinelAI.services;
 
-import com.hallak.SentinelAI.dtos.HttpResponseDataDTO;
+import java.time.Duration;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Mono;
 
-import java.time.Duration;
+import com.hallak.SentinelAI.dtos.HttpResponseDataDTO;
+
+import reactor.core.publisher.Mono;
 
 @Service
 public class HttpClientServiceImpl implements HttpClientService {
@@ -31,7 +33,7 @@ public class HttpClientServiceImpl implements HttpClientService {
                             response.bodyToMono(String.class)
                                     .map(body -> {
                                         long time = System.currentTimeMillis() - start;
-                                        return new HttpResponseDataDTO(body,
+                                        return new HttpResponseDataDTO(url, body,
                                                 response.statusCode().value(),
                                                 time,
                                                 body.length());
