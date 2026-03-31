@@ -25,7 +25,17 @@ public class XssScanServiceImpl implements XssScanService {
 
     @Override
     public List<HttpResponseDataDTO> scan(String target) throws Exception {
-        System.out.println(target + "/" + loadPayloadsService.loadPayloads("payloads/xss.txt").get(0));
+        List<String> payloads = loadPayloadsService.loadPayloads("payloads/xss.txt");
+
+        System.out.println("payloads: ");
+        for (String payload : payloads) {
+            payload = target + "/" + payload;
+            System.out.println(payload);
+        }
+
+
+
+
         return Collections.singletonList(new HttpResponseDataDTO("", 200, 23, 250));
     }
 }
