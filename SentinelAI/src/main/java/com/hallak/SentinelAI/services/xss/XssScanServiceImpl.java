@@ -5,7 +5,6 @@ package com.hallak.SentinelAI.services.xss;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hallak.SentinelAI.dtos.HttpResponseDataDTO;
@@ -23,7 +22,6 @@ public class XssScanServiceImpl implements XssScanService {
     private final LoadPayloadsService loadPayloadsService;
 
 
-    @Autowired
     public XssScanServiceImpl(HttpClientService httpClientService, LoadPayloadsService loadPayloadsService) {
         this.httpClientService = httpClientService;
         this.loadPayloadsService = loadPayloadsService;
@@ -71,12 +69,7 @@ public class XssScanServiceImpl implements XssScanService {
 
 
     public List<HttpResponseDataDTO> handleXssScanner(String target) throws Exception {
-        List<HttpResponseDataDTO> results = scanAndBasicFilter(target).collectList().block();
-
-
-        return null;
-
-
+        return scanAndBasicFilter(target).collectList().block();
     }
 
 
