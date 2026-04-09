@@ -5,9 +5,12 @@ package com.hallak.SentinelAI.services.xss;
 
 import java.util.List;
 
+import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hallak.SentinelAI.dtos.HttpResponseDataDTO;
+import com.hallak.SentinelAI.services.ClientOllamaServiceImpl;
 import com.hallak.SentinelAI.services.HttpClientService;
 import com.hallak.SentinelAI.services.LoadPayloadsService;
 import com.hallak.SentinelAI.utils.ScanHelperUtils;
@@ -20,11 +23,16 @@ public class XssScanServiceImpl implements XssScanService {
 
     private final HttpClientService httpClientService;
     private final LoadPayloadsService loadPayloadsService;
+    private final ClientOllamaService clientOllamaService;
 
 
-    public XssScanServiceImpl(HttpClientService httpClientService, LoadPayloadsService loadPayloadsService) {
+
+    @Autowired
+    public XssScanServiceImpl(HttpClientService httpClientService, 
+        LoadPayloadsService loadPayloadsService, ClientOllamaService clientOllamaService) {
         this.httpClientService = httpClientService;
         this.loadPayloadsService = loadPayloadsService;
+        this.clientOllamaService = clientOllamaService;
     }
 
     @Override
@@ -56,6 +64,10 @@ public class XssScanServiceImpl implements XssScanService {
                 return body.contains(payload)
                     || body.contains(decoded);
             })
+            .map(res.payload(p -> {
+                int index = p.url().indexOf("=");
+                return p.url().substring(index + 1);
+            }))
 
             .doOnNext(res ->
                 System.out.println("XSS possible: " + res.url() +
@@ -69,7 +81,14 @@ public class XssScanServiceImpl implements XssScanService {
 
 
     public List<HttpResponseDataDTO> handleXssScanner(String target) throws Exception {
-        return scanAndBasicFilter(target).collectList().block();
+        List<HttpResponseDataDTO> results = scanAndBasicFilter(target).collectList().block();
+        System.out.println(clientOllamaService.sendRequest(SystemPrompts.buildXssAnalysisPrompt(results.get(0), results.get(0).payload())));
+        
+
+
+        return null;
+
+
     }
 
 
