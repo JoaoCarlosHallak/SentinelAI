@@ -19,4 +19,10 @@ public class CommandInjectionScanServiceImpl implements CommandInjectionScanServ
     public void scan(String target) {
 
     }
+
+    @Override
+    public String handleCommandInjectionScanner(String target) throws Exception {
+        System.out.println("Command Injection Scan started for: " + target);
+        return null;
+    }
 }

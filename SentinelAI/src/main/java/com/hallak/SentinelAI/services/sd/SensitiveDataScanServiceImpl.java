@@ -22,4 +22,10 @@ public class SensitiveDataScanServiceImpl implements SensitiveDataScanService {
     public void scan(String target) {
 
     }
+
+    @Override
+    public String handleSensitiveDataScanner(String target) throws Exception {
+        System.out.println("Sensitive Data Scan started for: " + target);
+        return null;
+    }
 }

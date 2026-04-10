@@ -21,4 +21,10 @@ public class InsecureHeadersScanServiceImpl implements InsecureHeadersScanServic
 
 
     }
+
+    @Override
+    public String handleInsecureHeadersScanner(String target) throws Exception {
+        System.out.println("Insecure Headers Scan started for: " + target);
+        return null;
+    }
 }

@@ -20,5 +20,11 @@ public class LfiScanServiceImpl implements LfiScanService {
     public void scan(String target) {
 
     }
+
+    @Override
+    public String handleLfiScanner(String target) throws Exception {
+        System.out.println("LFI Scan started for: " + target);
+        return null;
+    }
 }
 

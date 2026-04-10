@@ -25,7 +25,8 @@ import com.hallak.SentinelAI.services.xss.XssScanService;
 
 		@Override
 		public void run(String... args) throws Exception {
-			xssScanService.scanAndBasicFilter("http://example.com?param=INJECT").subscribe();
+			xssScanService.scanAndBasicFilter("https://www.saojoaodelrei.mg.gov.br/ws_consulta/Buscar.php?STR_BSC=INJECT")
+			.subscribe();
 			System.out.println(clientOllamaService.sendRequest("What is the capital of France?"));
 
 		

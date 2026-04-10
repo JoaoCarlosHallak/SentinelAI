@@ -2,4 +2,5 @@ package com.hallak.SentinelAI.services.ci;
 
 public interface CommandInjectionScanService {
     void scan(String target);
+    String handleCommandInjectionScanner(String target) throws Exception;
 }

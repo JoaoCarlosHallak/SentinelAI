@@ -19,4 +19,10 @@ public class WeakAuthScanServiceImpl implements WeakAuthScanService {
     public void scan(String target) {
 
     }
+
+    @Override
+    public String handleWeakAuthScanner(String target) throws Exception {
+        System.out.println("Weak Authentication Scan started for: " + target);
+        return null;
+    }
 }

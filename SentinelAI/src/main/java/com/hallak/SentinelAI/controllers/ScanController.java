@@ -3,7 +3,6 @@ package com.hallak.SentinelAI.controllers;
 import com.hallak.SentinelAI.dtos.HttpResponseDataDTO;
 import com.hallak.SentinelAI.dtos.ScanRequest;
 import com.hallak.SentinelAI.services.ScanOrchestratorService;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +21,7 @@ public class ScanController {
 
 
     @PostMapping(value = "scan")
-    public ResponseEntity<List<HttpResponseDataDTO>> newScan(@RequestBody ScanRequest scanRequest) throws Exception {
+    public ResponseEntity<String> newScan(@RequestBody ScanRequest scanRequest) throws Exception {
         return new ResponseEntity<>(scanOrchestratorService.newScan(scanRequest), HttpStatus.OK);
     }
 

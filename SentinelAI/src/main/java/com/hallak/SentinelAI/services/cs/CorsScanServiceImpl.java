@@ -20,4 +20,10 @@ public class CorsScanServiceImpl implements CorsScanService {
     public void scan(String target) {
 
     }
+
+    @Override
+    public String handleCorsScanner(String target) throws Exception {
+        System.out.println("CORS Scan started for: " + target);
+        return null;
+    }
 }

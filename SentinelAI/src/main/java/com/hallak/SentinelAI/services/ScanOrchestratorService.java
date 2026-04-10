@@ -6,6 +6,6 @@ import com.hallak.SentinelAI.dtos.ScanRequest;
 import java.util.List;
 
 public interface ScanOrchestratorService {
-    List<HttpResponseDataDTO> newScan(ScanRequest scanRequest) throws Exception;
+    String newScan(ScanRequest scanRequest) throws Exception;
 
 }

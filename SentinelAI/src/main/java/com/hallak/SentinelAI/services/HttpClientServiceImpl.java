@@ -23,6 +23,7 @@ public class HttpClientServiceImpl implements HttpClientService {
     }
 
 
+    @Override
     public Mono<HttpResponseDataDTO> sendRequest(String url) {
 
         long start = System.currentTimeMillis();
@@ -36,7 +37,8 @@ public class HttpClientServiceImpl implements HttpClientService {
                                         return new HttpResponseDataDTO(url, body,
                                                 response.statusCode().value(),
                                                 time,
-                                                body.length());
+                                                body.length(),
+                                            url.substring(url.indexOf("=") + 1));
                                     })
                     )
                     .timeout(Duration.ofSeconds(5))

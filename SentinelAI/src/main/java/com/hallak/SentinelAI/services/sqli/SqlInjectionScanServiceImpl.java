@@ -20,4 +20,10 @@ public class SqlInjectionScanServiceImpl implements SqlInjectionScanService {
     public void scan(String target) {
 
     }
+
+    @Override
+    public String handleSqlInjectionScanner(String target) throws Exception {
+        System.out.println("SQL Injection Scan started for: " + target);
+        return null;
+    }
 }

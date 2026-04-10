@@ -64,42 +64,57 @@ public class ScanOrchestratorServiceImpl implements ScanOrchestratorService {
 
 
     @Override
-    public List<HttpResponseDataDTO> newScan(ScanRequest scanRequest) throws Exception {
+    public String newScan(ScanRequest scanRequest) throws Exception {
         String target = scanRequest.target();
         for (ScanType scanType : scanRequest.scanTypeList()) {
-
             switch (scanType) {
-                case XSS -> xssScanService.scan(target);
-
-                case LFI -> lfiScanService.scan(target);
-
-                case SQL_INJECTION -> sqlInjectionScanService.scan(target);
-
-                case OPEN_REDIRECT -> openRedirectScanService.scan(target);
-
-                case DIRECTORY_TRAVERSAL -> directoryTransversalScanService.scan(target);
-
-                case INSECURE_HEADERS -> insecureHeadersScanService.scan(target);
-
-                case SSRF -> ssrfScanService.scan(target);
-
-                case CORS_MISCONFIGURATION -> corsScanService.scan(target);
-
-                case COMMAND_INJECTION -> commandInjectionScanService.scan(target);
-
-                case WEAK_AUTHENTICATION -> weakAuthScanService.scan(target);
-
-                case SENSITIVE_DATA_EXPOSURE -> sensitiveDataScanService.scan(target);
-
-                case CSRF -> csrfScanService.scan(target);
-
-                case RATE_LIMIT_BYPASS -> rateLimitScanService.scan(target);
-
-                case IDOR -> idorScanService.scan(target);
-
-                case JWT_MISCONFIGURATION -> jwtScanService.scan(target);
+                case XSS -> {
+                    return xssScanService.handleXssScanner(target);
+                }
+                case LFI -> {
+                    return lfiScanService.handleLfiScanner(target);
+                }
+                case SQL_INJECTION -> {
+                    return sqlInjectionScanService.handleSqlInjectionScanner(target);
+                }
+                case OPEN_REDIRECT -> {
+                    return openRedirectScanService.handleOpenRedirectScanner(target);
+                }
+                case DIRECTORY_TRAVERSAL -> {
+                    return directoryTransversalScanService.handleDirectoryTraversalScanner(target);
+                }
+                case INSECURE_HEADERS -> {
+                    return insecureHeadersScanService.handleInsecureHeadersScanner(target);
+                }
+                case SSRF -> {
+                    return ssrfScanService.handleSsrfScanner(target);
+                }
+                case CORS_MISCONFIGURATION -> {
+                    return corsScanService.handleCorsScanner(target);
+                }
+                case COMMAND_INJECTION -> {
+                    return commandInjectionScanService.handleCommandInjectionScanner(target);
+                }
+                case WEAK_AUTHENTICATION -> {
+                    return weakAuthScanService.handleWeakAuthScanner(target);
+                }
+                case SENSITIVE_DATA_EXPOSURE -> {
+                    return sensitiveDataScanService.handleSensitiveDataScanner(target);
+                }
+                case CSRF -> {
+                    return csrfScanService.handleCsrfScanner(target);
+                }
+                case RATE_LIMIT_BYPASS -> {
+                    return rateLimitScanService.handleRateLimitScanner(target);
+                }
+                case IDOR -> {
+                    return idorScanService.handleIdorScanner(target);
+                }
+                case JWT_MISCONFIGURATION -> {
+                    return jwtScanService.handleJwtScanner(target);
+                }
+                default -> throw new IllegalArgumentException("Unsupported scan type: " + scanType);
             }
-
         }
         return null;
     }

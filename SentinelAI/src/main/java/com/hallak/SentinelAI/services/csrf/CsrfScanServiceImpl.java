@@ -18,4 +18,10 @@ public class CsrfScanServiceImpl implements CsrfScanService {
     @Override
     public void scan(String target) {
     }
+
+    @Override
+    public String handleCsrfScanner(String target) throws Exception {
+        System.out.println("CSRF Scan started for: " + target);
+        return null;
+    }
 }

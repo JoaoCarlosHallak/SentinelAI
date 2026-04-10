@@ -21,4 +21,10 @@ public class SsrfScanServiceImpl implements SsrfScanService {
     public void scan(String target) {
 
     }
+
+    @Override
+    public String handleSsrfScanner(String target) throws Exception {
+        System.out.println("SSRF Scan started for: " + target);
+        return null;
+    }
 }

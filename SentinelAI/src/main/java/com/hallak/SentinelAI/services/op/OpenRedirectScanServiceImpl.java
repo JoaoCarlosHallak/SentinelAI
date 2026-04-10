@@ -20,4 +20,10 @@ public class OpenRedirectScanServiceImpl implements OpenRedirectScanService {
     public void scan(String target) {
 
     }
+
+    @Override
+    public String handleOpenRedirectScanner(String target) throws Exception {
+        System.out.println("Open Redirect Scan started for: " + target);
+        return null;
+    }
 }

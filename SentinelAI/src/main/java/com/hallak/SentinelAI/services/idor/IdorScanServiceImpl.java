@@ -20,4 +20,10 @@ public class IdorScanServiceImpl implements IdorScanService {
     public void scan(String target) {
 
     }
+
+    @Override
+    public String handleIdorScanner(String target) throws Exception {
+        System.out.println("IDOR Scan started for: " + target);
+        return null;
+    }
 }

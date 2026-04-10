@@ -24,6 +24,9 @@ public class JwtScanServiceImpl implements JwtScanService {
 
     }
 
-
-
+    @Override
+    public String handleJwtScanner(String target) throws Exception {
+        System.out.println("JWT Misconfiguration Scan started for: " + target);
+        return null;
+    }
 }

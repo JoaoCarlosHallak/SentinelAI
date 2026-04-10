@@ -21,4 +21,10 @@ public class RateLimitScanServiceImpl implements RateLimitScanService{
     public void scan(String target) {
 
     }
+
+    @Override
+    public String handleRateLimitScanner(String target) throws Exception {
+        System.out.println("Rate Limit Scan started for: " + target);
+        return null;
+    }
 }

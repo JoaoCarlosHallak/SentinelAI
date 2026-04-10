@@ -18,4 +18,10 @@ public class DirectoryTransversalScanServiceImpl implements DirectoryTransversal
     @Override
     public void scan(String target) {
     }
+
+    @Override
+    public String handleDirectoryTraversalScanner(String target) throws Exception {
+        System.out.println("Directory Traversal Scan started for: " + target);
+        return null;
+    }
 }
