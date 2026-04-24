@@ -1,9 +1,14 @@
 package com.hallak.SentinelAI.services.ssrf;
 
+import com.hallak.SentinelAI.dtos.HttpResponseDataDTO;
 import com.hallak.SentinelAI.services.HttpClientService;
 import com.hallak.SentinelAI.services.sd.SensitiveDataScanService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @Service
 public class SsrfScanServiceImpl implements SsrfScanService {
@@ -18,13 +23,12 @@ public class SsrfScanServiceImpl implements SsrfScanService {
 
 
     @Override
-    public void scan(String target) {
-
+    public Flux<HttpResponseDataDTO> scanAndBasicFilter(String target) {
+        return Flux.empty();
     }
 
     @Override
-    public String handleSsrfScanner(String target) throws Exception {
-        System.out.println("SSRF Scan started for: " + target);
-        return null;
+    public Mono<String> handleSsrfScanner(String target) throws Exception {
+        return Mono.just("SSRF Scan: Em desenvolvimento para " + target);
     }
 }

@@ -16,6 +16,8 @@ import com.hallak.SentinelAI.services.LoadPayloadsService;
 import com.hallak.SentinelAI.utils.ScanHelperUtils;
 
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+import reactor.core.scheduler.Schedulers;
 
 @Service
 public class XssScanServiceImpl implements XssScanService {
@@ -81,19 +83,24 @@ public class XssScanServiceImpl implements XssScanService {
     }
 
 
-
     @Override
-    public String handleXssScanner(String target) throws Exception {
-        List<HttpResponseDataDTO> results = scanAndBasicFilter(target).collectList().block();
-        String s = clientOllamaService.sendRequest(SystemPrompts.buildXssAnalysisPrompt(results.get(0), results.get(0).payload()));
-        System.out.println(s);
-        
+    public Mono<String> handleXssScanner(String target) throws Exception {
 
-        return s;
+        return scanAndBasicFilter(target)
+            .collectList()
+            .flatMap(results -> {
+                if (results.isEmpty()) {
+                    return Mono.just("Nenhuma vulnerabilidade detectada.");
+                }
 
-
+                // Apenas o Ollama vai para thread separada
+                return Mono.fromCallable(() ->
+                    clientOllamaService.sendRequest(
+                        SystemPrompts.buildXssAnalysisPrompt(results.get(0), results.get(0).payload())
+                    )
+                ).subscribeOn(Schedulers.boundedElastic());
+            });
     }
-
 
 
 

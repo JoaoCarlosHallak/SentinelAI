@@ -1,9 +1,11 @@
 package com.hallak.SentinelAI.services.sqli;
 
+import com.hallak.SentinelAI.dtos.HttpResponseDataDTO;
 import com.hallak.SentinelAI.services.HttpClientService;
-import com.hallak.SentinelAI.services.wa.WeakAuthScanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @Service
 public class SqlInjectionScanServiceImpl implements SqlInjectionScanService {
@@ -17,13 +19,12 @@ public class SqlInjectionScanServiceImpl implements SqlInjectionScanService {
 
 
     @Override
-    public void scan(String target) {
-
+    public Flux<HttpResponseDataDTO> scanAndBasicFilter(String target) {
+        return Flux.empty();
     }
 
     @Override
-    public String handleSqlInjectionScanner(String target) throws Exception {
-        System.out.println("SQL Injection Scan started for: " + target);
-        return null;
+    public Mono<String> handleSqlInjectionScanner(String target) throws Exception {
+        return Mono.just("SQL Injection Scan: Em desenvolvimento para " + target);
     }
 }

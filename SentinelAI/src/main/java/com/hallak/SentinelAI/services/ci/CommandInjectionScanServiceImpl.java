@@ -1,8 +1,11 @@
 package com.hallak.SentinelAI.services.ci;
 
+import com.hallak.SentinelAI.dtos.HttpResponseDataDTO;
 import com.hallak.SentinelAI.services.HttpClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @Service
 public class CommandInjectionScanServiceImpl implements CommandInjectionScanService {
@@ -16,13 +19,12 @@ public class CommandInjectionScanServiceImpl implements CommandInjectionScanServ
 
 
     @Override
-    public void scan(String target) {
-
+    public Flux<HttpResponseDataDTO> scanAndBasicFilter(String target) {
+        return Flux.empty();
     }
 
     @Override
-    public String handleCommandInjectionScanner(String target) throws Exception {
-        System.out.println("Command Injection Scan started for: " + target);
-        return null;
+    public Mono<String> handleCommandInjectionScanner(String target) throws Exception {
+        return Mono.just("Command Injection Scan: Em desenvolvimento para " + target);
     }
 }

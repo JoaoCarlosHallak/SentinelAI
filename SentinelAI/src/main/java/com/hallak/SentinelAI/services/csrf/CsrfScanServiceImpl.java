@@ -1,9 +1,12 @@
 package com.hallak.SentinelAI.services.csrf;
 
+import com.hallak.SentinelAI.dtos.HttpResponseDataDTO;
 import com.hallak.SentinelAI.services.HttpClientService;
 import com.hallak.SentinelAI.services.jwt.JwtScanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @Service
 public class CsrfScanServiceImpl implements CsrfScanService {
@@ -16,12 +19,12 @@ public class CsrfScanServiceImpl implements CsrfScanService {
     }
 
     @Override
-    public void scan(String target) {
+    public Flux<HttpResponseDataDTO> scanAndBasicFilter(String target) {
+        return Flux.empty();
     }
 
     @Override
-    public String handleCsrfScanner(String target) throws Exception {
-        System.out.println("CSRF Scan started for: " + target);
-        return null;
+    public Mono<String> handleCsrfScanner(String target) throws Exception {
+        return Mono.just("CSRF Scan: Em desenvolvimento para " + target);
     }
 }

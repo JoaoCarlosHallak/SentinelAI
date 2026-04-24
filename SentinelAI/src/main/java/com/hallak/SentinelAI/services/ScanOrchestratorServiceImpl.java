@@ -24,6 +24,8 @@ import com.hallak.SentinelAI.services.ssrf.SsrfScanService;
 import com.hallak.SentinelAI.services.wa.WeakAuthScanService;
 import com.hallak.SentinelAI.services.xss.XssScanService;
 
+import reactor.core.publisher.Mono;
+
 @Service
 public class ScanOrchestratorServiceImpl implements ScanOrchestratorService {
 
@@ -64,7 +66,7 @@ public class ScanOrchestratorServiceImpl implements ScanOrchestratorService {
 
 
     @Override
-    public String newScan(ScanRequest scanRequest) throws Exception {
+    public Mono<String> newScan(ScanRequest scanRequest) throws Exception {
         String target = scanRequest.target();
         for (ScanType scanType : scanRequest.scanTypeList()) {
             switch (scanType) {

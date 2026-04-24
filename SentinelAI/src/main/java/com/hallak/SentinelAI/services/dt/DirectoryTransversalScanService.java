@@ -1,4 +1,11 @@
 package com.hallak.SentinelAI.services.dt;
 
-public interface DirectoryTransversalScanService{
-    void scan(String target);    String handleDirectoryTraversalScanner(String target) throws Exception;}
+import com.hallak.SentinelAI.dtos.HttpResponseDataDTO;
+
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
+public interface DirectoryTransversalScanService {
+    Flux<HttpResponseDataDTO> scanAndBasicFilter(String target) throws Exception;
+    Mono<String> handleDirectoryTraversalScanner(String target) throws Exception;
+}
