@@ -44,7 +44,37 @@ public class HttpClientServiceImpl implements HttpClientService {
                     .timeout(Duration.ofSeconds(5))
                     .onErrorResume(e -> Mono.empty());
         }
+                    
     }
+        /* So para testar com o cookie de sessao no DVWA 
+    return webClient.get()
+            .uri(url)
+            .header("Cookie", "PHPSESSID=pkgi206dvqm3di0mp6j83du667; security=low")
+            .exchangeToMono(response ->
+                    response.bodyToMono(String.class)
+                            .map(body -> {
+                                long time = System.currentTimeMillis() - start;
+                                return new HttpResponseDataDTO(
+                                        url,
+                                        body,
+                                        response.statusCode().value(),
+                                        time,
+                                        body.length(),
+                                        url.substring(url.indexOf("=") + 1)
+                                );
+                            })
+            )
+            .timeout(Duration.ofSeconds(5))
+            .onErrorResume(e -> Mono.empty());
+    }
+}*/
+
+
+
+
+
+
+    
 
 
 

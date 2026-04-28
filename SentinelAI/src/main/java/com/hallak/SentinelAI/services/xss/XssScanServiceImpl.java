@@ -88,7 +88,6 @@ public class XssScanServiceImpl implements XssScanService {
 
         return scanAndBasicFilter(target)
             .collectList()
-            .take(3)
             .flatMap(results -> {
                 if (results.isEmpty()) {
                     return Mono.just("Nenhuma vulnerabilidade detectada.");
@@ -110,25 +109,3 @@ public class XssScanServiceImpl implements XssScanService {
 
     }
 
-/*
-    1. Usuário envia: POST /scan
-   {
-     "target": "https://site.com/page?search=INJECT",
-     "scanTypeList": ["XSS"]
-   }
-
-2. handleXssScanner() é chamado
-   ↓
-3. scanAndBasicFilter() executa:
-   - Carrega payloads: <script>, <img onerror=, etc
-   - Cria URLs: https://site.com/page?search=<script>alert(1)</script>
-   - Faz 10 requests paralelos via HttpClientService
-   - Filtra respostas onde payload aparece no HTML
-   - Retorna Flux de DTOs com resultados positivos
-   
-4. handleXssScanner envia resultado para IA
-   - "Analise se este payload causa XSS:"
-   - Envia: URL, resposta, payload
-   
-5. API retorna resultado para usuário
-*/

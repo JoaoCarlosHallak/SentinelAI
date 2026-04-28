@@ -1,0 +1,102 @@
+root:x:0:0:
+daemon:x:
+bin:x:
+sys:x:
+nobody:x:
+:/bin/bash
+:/usr/sbin
+/etc/passwd
+/etc/shadow
+/etc/group
+/etc/hosts
+127.0.0.1
+localhost
+::1
+[fonts]
+[extensions]
+for 16-bit app support
+system.ini
+boot.ini
+win.ini
+[boot loader]
+multi(0)disk(0)rdisk(0)
+default=multi(0)
+operating systems
+Program Files
+WINDOWS
+System32
+drivers\etc\hosts
+<?php
+<?=
+include(
+require(
+Fatal error
+Warning: include
+Warning: require
+failed to open stream
+No such file or directory
+open_basedir restriction
+Permission denied
+proc/self/environ
+HTTP_USER_AGENT=
+DOCUMENT_ROOT
+SERVER_NAME
+SERVER_ADDR
+PATH=
+PWD=
+USER=
+HOME=
+SHELL=
+LOGNAME=
+apache2.conf
+httpd.conf
+nginx.conf
+<VirtualHost
+server {
+listen 80;
+error_log
+access_log
+DB_PASSWORD
+DB_USER
+DB_HOST
+database
+password
+username
+uid=
+gid=
+groups=
+shadow:
+mail:
+ftp:
+ssh:
+cron:
+syslog:
+www-data
+/bin/sh
+/bin/bash
+/bin/zsh
+/bin/false
+/bin/true
+var/www/html
+htdocs
+public_html
+index.php
+config.php
+settings.php
+.env
+APP_KEY=
+APP_ENV=
+APP_DEBUG=
+APP_NAME=
+DB_CONNECTION=
+DB_DATABASE=
+DB_USERNAME=
+DB_PASSWORD=
+SECRET_KEY
+API_KEY
+TOKEN=
+ACCESS_KEY
+PRIVATE_KEY
+BEGIN RSA PRIVATE KEY
+BEGIN PRIVATE KEY
+ssh-rsa
