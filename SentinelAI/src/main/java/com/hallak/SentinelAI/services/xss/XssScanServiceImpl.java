@@ -88,6 +88,7 @@ public class XssScanServiceImpl implements XssScanService {
 
         return scanAndBasicFilter(target)
             .collectList()
+            .take(3)
             .flatMap(results -> {
                 if (results.isEmpty()) {
                     return Mono.just("Nenhuma vulnerabilidade detectada.");
@@ -96,7 +97,7 @@ public class XssScanServiceImpl implements XssScanService {
                 // Apenas o Ollama vai para thread separada
                 return Mono.fromCallable(() ->
                     clientOllamaService.sendRequest(
-                        SystemPrompts.buildXssAnalysisPrompt(results.get(0), results.get(0).payload())
+                        SystemPrompts.buildXssAnalysisPrompt(results.get(0))
                     )
                 ).subscribeOn(Schedulers.boundedElastic());
             });

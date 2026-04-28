@@ -1,9 +1,106 @@
-    "sql syntax",
-    "mysql",
-    "syntax error",
-    "unclosed quotation",
-    "quoted string not properly terminated",
-    "ora-",
-    "postgres",
-    "sqlite",
-    "fatal error"
+sql syntax
+syntax error
+mysql
+mariadb
+postgresql
+postgres
+psql
+sqlite
+oracle
+ora-
+odbc
+jdbc
+sqlstate
+database error
+query failed
+unclosed quotation
+unterminated string
+unexpected token
+invalid query
+invalid syntax
+missing keyword
+unknown column
+unknown table
+unknown database
+column not found
+table not found
+invalid identifier
+invalid parameter
+invalid input
+conversion failed
+type mismatch
+division by zero
+numeric overflow
+string truncation
+constraint violation
+duplicate entry
+duplicate key
+primary key violation
+foreign key constraint
+cannot insert null
+not null constraint
+permission denied
+access denied
+authentication failed
+login failed
+invalid user
+invalid password
+connection refused
+connection failed
+timeout expired
+query timeout
+deadlock detected
+lock wait timeout
+transaction aborted
+cannot open database
+cannot connect to database
+driver error
+data source error
+invalid cursor state
+fetch failed
+execute failed
+prepare failed
+bind failed
+statement failed
+result set error
+invalid result
+unexpected end of input
+unexpected end of command
+parse error
+token error
+invalid escape sequence
+illegal character
+bad sql grammar
+incorrect syntax near
+near syntax error
+fatal error
+warning sql
+internal error
+server error
+database exception
+sql exception
+runtime error
+execution error
+invalid statement
+invalid select
+invalid insert
+invalid update
+invalid delete
+invalid where clause
+invalid group by
+invalid order by
+invalid join
+missing from clause
+missing where clause
+missing values
+missing select
+invalid limit
+invalid offset
+invalid alias
+ambiguous column
+ambiguous field
+invalid cast
+invalid function
+unknown function
+invalid operator
+invalid expression

