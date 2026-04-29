@@ -1,0 +1,44 @@
+uid=
+gid=
+groups=
+root:x:0:0
+daemon:x:
+bin:x:
+:/bin/bash
+:/usr/sbin
+linux
+gnu/linux
+darwin
+kernel
+x86_64
+/home/
+root
+www-data
+apache
+nginx
+/bin/
+usr/bin
+var/www
+tmp
+etc/passwd
+proc/version
+hostname
+uptime
+load average
+startinjectedend
+aaa
+bbb
+injected
+environment=
+path=
+home=
+user=
+shell=
+logname=
+pwd=
+volume in drive
+directory of
+windows
+system32
+program files
+username

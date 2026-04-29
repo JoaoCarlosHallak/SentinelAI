@@ -53,16 +53,16 @@ public class SqlInjectionScanServiceImpl implements SqlInjectionScanService {
                 return errorWordList.stream().anyMatch(err -> body.contains(err.toLowerCase()));
             }) //Se o corpo contem alguma palavra do lista de erros
             .map(res -> {
-                int index = res.url().indexOf("=");
-                String payloadExtracted = res.url().substring(index + 1);
+
 
                 return new HttpResponseDataDTO(
                     res.url(),
-                     res.body(),
-                      res.statusCode(), 
+                     res.header(),
+                      res.body(),
+                       res.statusCode(), 
                     res.responseTime(),
                      res.contentLength(),
-                      payloadExtracted);
+                      res.payload());
             })
 
             .doOnNext(res ->

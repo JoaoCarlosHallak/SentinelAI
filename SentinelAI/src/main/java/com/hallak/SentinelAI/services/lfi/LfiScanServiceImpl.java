@@ -55,16 +55,14 @@ public class LfiScanServiceImpl implements LfiScanService {
                 return lfiContents.stream().anyMatch(err -> body.contains(err.toLowerCase()));
             }) 
             .map(res -> {
-                int index = res.url().indexOf("=");
-                String payloadExtracted = res.url().substring(index + 1);
-
                 return new HttpResponseDataDTO(
                     res.url(),
+                    res.header(),
                      res.body(),
-                      res.statusCode(), 
+                    res.statusCode(), 
                     res.responseTime(),
                      res.contentLength(),
-                      payloadExtracted);
+                      res.payload());
             })
 
             .doOnNext(res ->

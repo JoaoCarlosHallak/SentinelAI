@@ -1,17 +1,13 @@
 package com.hallak.SentinelAI.services;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hallak.SentinelAI.dtos.HttpResponseDataDTO;
 import com.hallak.SentinelAI.dtos.ScanRequest;
 import com.hallak.SentinelAI.dtos.ScanType;
 import com.hallak.SentinelAI.services.ci.CommandInjectionScanService;
 import com.hallak.SentinelAI.services.cs.CorsScanService;
 import com.hallak.SentinelAI.services.csrf.CsrfScanService;
-import com.hallak.SentinelAI.services.dt.DirectoryTransversalScanService;
 import com.hallak.SentinelAI.services.idor.IdorScanService;
 import com.hallak.SentinelAI.services.ih.InsecureHeadersScanService;
 import com.hallak.SentinelAI.services.jwt.JwtScanService;
@@ -33,7 +29,6 @@ public class ScanOrchestratorServiceImpl implements ScanOrchestratorService {
     private final LfiScanService lfiScanService;
     private final SqlInjectionScanService sqlInjectionScanService;
     private final OpenRedirectScanService openRedirectScanService;
-    private final DirectoryTransversalScanService directoryTransversalScanService;
     private final InsecureHeadersScanService insecureHeadersScanService;
     private final SsrfScanService ssrfScanService;
     private final CorsScanService corsScanService;
@@ -46,12 +41,11 @@ public class ScanOrchestratorServiceImpl implements ScanOrchestratorService {
     private final JwtScanService jwtScanService;
 
     @Autowired
-    public ScanOrchestratorServiceImpl(XssScanService xssScanService, LfiScanService lfiScanService, SqlInjectionScanService sqlInjectionScanService, OpenRedirectScanService openRedirectScanService, DirectoryTransversalScanService directoryTransversalScanService, InsecureHeadersScanService insecureHeadersScanService, SsrfScanService ssrfScanService, CorsScanService corsScanService, CommandInjectionScanService commandInjectionScanService, WeakAuthScanService weakAuthScanService, SensitiveDataScanService sensitiveDataScanService, CsrfScanService csrfScanService, RateLimitScanService rateLimitScanService, IdorScanService idorScanService, JwtScanService jwtScanService) {
+    public ScanOrchestratorServiceImpl(XssScanService xssScanService, LfiScanService lfiScanService, SqlInjectionScanService sqlInjectionScanService, OpenRedirectScanService openRedirectScanService, InsecureHeadersScanService insecureHeadersScanService, SsrfScanService ssrfScanService, CorsScanService corsScanService, CommandInjectionScanService commandInjectionScanService, WeakAuthScanService weakAuthScanService, SensitiveDataScanService sensitiveDataScanService, CsrfScanService csrfScanService, RateLimitScanService rateLimitScanService, IdorScanService idorScanService, JwtScanService jwtScanService) {
         this.xssScanService = xssScanService;
         this.lfiScanService = lfiScanService;
         this.sqlInjectionScanService = sqlInjectionScanService;
         this.openRedirectScanService = openRedirectScanService;
-        this.directoryTransversalScanService = directoryTransversalScanService;
         this.insecureHeadersScanService = insecureHeadersScanService;
         this.ssrfScanService = ssrfScanService;
         this.corsScanService = corsScanService;
@@ -81,9 +75,6 @@ public class ScanOrchestratorServiceImpl implements ScanOrchestratorService {
                 }
                 case OPEN_REDIRECT -> {
                     return openRedirectScanService.handleOpenRedirectScanner(target);
-                }
-                case DIRECTORY_TRAVERSAL -> {
-                    return directoryTransversalScanService.handleDirectoryTraversalScanner(target);
                 }
                 case INSECURE_HEADERS -> {
                     return insecureHeadersScanService.handleInsecureHeadersScanner(target);

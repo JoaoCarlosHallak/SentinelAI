@@ -67,10 +67,8 @@ public class XssScanServiceImpl implements XssScanService {
                     || body.contains(decoded);
             })
             .map(res -> {
-                int index = res.url().indexOf("=");
-                String payloadExtracted = res.url().substring(index + 1);
-                return new HttpResponseDataDTO(res.url(), res.body(), res.statusCode(), 
-                    res.responseTime(), res.contentLength(), payloadExtracted);
+                return new HttpResponseDataDTO(res.url(), res.header(), res.body(), res.statusCode(), 
+                    res.responseTime(), res.contentLength(), res.payload());
             })
 
             .doOnNext(res ->
