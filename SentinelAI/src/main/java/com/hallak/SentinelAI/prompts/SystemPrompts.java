@@ -336,9 +336,7 @@ public static String buildInsecureHeadersAnalysisPrompt(HttpResponseDataDTO data
               "cabecalhos_inseguros": [
                 {
                   "cabecalho": "<nome do cabeçalho>",
-                  "valor_atual": "<valor encontrado ou null>",
                   "problema": "<descrição do problema>",
-                  "recomendacao": "<valor ou configuração recomendada>"
                 }
               ],
               "cabecalhos_informativos": ["<lista de cabeçalhos que vazam informações do servidor>"],
@@ -354,8 +352,62 @@ public static String buildInsecureHeadersAnalysisPrompt(HttpResponseDataDTO data
             """.formatted(data.url(), data.statusCode(), data.responseTime(), data.contentLength(), data.header());
 }
 
+public static String buildCsrfAnalysisPrompt(HttpResponseDataDTO data) {
+    return """
+            Você é um analista sênior de segurança de aplicações web, especialista em vulnerabilidades de CSRF (Cross-Site Request Forgery).
 
+            Analise os dados da resposta HTTP abaixo e determine se há indícios de uma possível vulnerabilidade de CSRF.
 
+            ## Dados da Resposta HTTP
+
+            - URL: %s
+            - Status Code: %d
+            - Tempo de Resposta: %d ms
+            - Tamanho do Conteúdo: %d bytes
+
+            ## Cabeçalhos da Resposta
+        %s
+
+            ## Corpo da Resposta
+        %s
+
+            ## Sua Tarefa
+
+            Avalie se o endpoint está suscetível a ataques de CSRF.
+
+            Considere especialmente:
+
+            - Ausência de token CSRF no corpo da resposta (ex: campos ocultos como _token, csrf_token, __RequestVerificationToken)
+            - Ausência de validação de cabeçalhos anti-CSRF (ex: X-CSRF-Token, X-Requested-With)
+            - Configuração insegura ou ausente do atributo SameSite nos cookies de sessão (ex: SameSite=None sem Secure, ausência de SameSite)
+            - Ausência do cabeçalho Origin ou Referer sendo ignorado pelo servidor
+            - Endpoints de mutação de estado (POST, PUT, DELETE, PATCH) sem proteção CSRF identificável
+            - Presença de formulários HTML sem campos de token CSRF
+            - Ausência de cabeçalho Vary: Origin na resposta
+            - Configuração permissiva de CORS (ex: Access-Control-Allow-Origin: *, Access-Control-Allow-Credentials: true)
+            - Aceitação de requisições cross-origin sem validação adequada
+
+            ## Formato da Resposta
+
+            Responda APENAS com um JSON válido, sem explicações fora do JSON:
+
+            {
+              "vulneravel": true ou false,
+              "tipo": "<missing-token | misconfigured-samesite | cors-misconfiguration | missing-origin-validation | desconhecido>",
+              "protecao_detectada": "<nome do mecanismo de proteção encontrado ou null>",
+              "cookies_inseguros": ["<lista de cookies sem SameSite ou com configuração insegura>"],
+              "confianca": <float entre 0.0 e 1.0>,
+              "justificativa": "<explicação técnica detalhada baseada nos dados acima>"
+            }
+
+            - vulneravel: indica se há indício de CSRF
+            - tipo: classificação do vetor de ataque identificado
+            - protecao_detectada: mecanismo de proteção CSRF encontrado na resposta, se houver
+            - cookies_inseguros: cookies identificados com configuração SameSite ausente ou insegura
+            - confianca: nível de confiança da análise
+            - justificativa: explicação clara citando evidências encontradas nos cabeçalhos e corpo da resposta
+            """.formatted(data.url(), data.statusCode(), data.responseTime(), data.contentLength(), data.header(), data.body());
+}
 
 
 }

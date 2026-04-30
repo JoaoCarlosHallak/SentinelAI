@@ -40,7 +40,7 @@ public class HttpResponseDataDTO {
     public HttpHeaders header() {
         return header;
     }
-
+    
     public String body() {
         return body;
     }
@@ -59,5 +59,8 @@ public class HttpResponseDataDTO {
 
     public String payload() {
         return payload;
-    }    
+    }
+
+
+
 }

@@ -30,6 +30,7 @@ public class HttpClientServiceImpl implements HttpClientService {
 
         return webClient.get().
                 uri(url)
+                .header("Cookie", "PHPSESSID=uf8hgqt7mhiaij9cr12fa2bd96; security=low; security_level=0")
                     .exchangeToMono(response ->
                             response.bodyToMono(String.class)
                                     .map(body -> {

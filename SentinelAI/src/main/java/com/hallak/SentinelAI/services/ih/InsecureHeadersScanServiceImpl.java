@@ -62,29 +62,6 @@ public class InsecureHeadersScanServiceImpl implements InsecureHeadersScanServic
             }).doOnNext(res -> System.out.println("Insecure Headers possible: " + res.url() +
                                 " Status: " + res.statusCode()));
         
-        /*fromIterable(payloads) 
-            .flatMap(httpClientService::sendRequest, 10) 
-            .filter(res -> res.statusCode() < 500) 
-            .filter(res -> res.body() != null && !res.body().isEmpty()) 
-            .filter(res -> {
-                String body = res.body().toLowerCase();
-                return .stream().anyMatch(err -> body.contains(err.toLowerCase()));
-            }) 
-            .map(res -> {
-                return new HttpResponseDataDTO(
-                    res.url(),
-                    res.header(),
-                     res.body(),
-                    res.statusCode(), 
-                    res.responseTime(),
-                     res.contentLength(),
-                      res.payload());
-            })
-
-            .doOnNext(res ->
-                System.out.println("Local File Inclusion possible: " + res.url() +
-                                " Status: " + res.statusCode())
-            ); */
 
     }
 

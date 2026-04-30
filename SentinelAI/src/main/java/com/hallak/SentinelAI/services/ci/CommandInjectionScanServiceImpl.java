@@ -77,7 +77,8 @@ public class CommandInjectionScanServiceImpl implements CommandInjectionScanServ
     public Mono<String> handleCommandInjectionScanner(String target) throws Exception { // Retorna string no futuro
         return scanAndBasicFilter(target)
         .take(3)
-            .collectList() // Pega todos os resultado e junta numa lista
+        .collectList()
+         // Pega todos os resultado e junta numa lista
             .flatMap(results -> { // Quando a lista chegar exercute isso, mas nao trave a thread
                 if (results.isEmpty()) {
                     return Mono.just("Nenhuma vulnerabilidade detectada.");
