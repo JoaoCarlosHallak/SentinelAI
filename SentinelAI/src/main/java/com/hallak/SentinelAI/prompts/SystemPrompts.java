@@ -410,6 +410,84 @@ public static String buildCsrfAnalysisPrompt(HttpResponseDataDTO data) {
 }
 
 
+public static String buildIdorAnalysisPrompt(HttpResponseDataDTO original, HttpResponseDataDTO manipulated) {
+    return """
+            Você é um analista sênior de segurança de aplicações web, especialista em vulnerabilidades de IDOR (Insecure Direct Object Reference).
+
+            Analise as duas respostas HTTP abaixo e determine se há indícios de uma possível vulnerabilidade de IDOR.
+            A primeira é a requisição original, a segunda é a requisição com o identificador manipulado.
+
+            ## Requisição Original
+
+            - URL: %s
+            - Status Code: %d
+            - Tempo de Resposta: %d ms
+            - Tamanho do Conteúdo: %d bytes
+
+            ### Cabeçalhos
+        %s
+
+            ### Corpo
+        %s
+
+            ## Requisição Manipulada
+
+            - URL: %s
+            - Payload Utilizado: %s
+            - Status Code: %d
+            - Tempo de Resposta: %d ms
+            - Tamanho do Conteúdo: %d bytes
+
+            ### Cabeçalhos
+        %s
+
+            ### Corpo
+        %s
+
+            ## Sua Tarefa
+
+            Avalie se o endpoint permite acesso não autorizado a recursos de outros usuários através da manipulação de identificadores.
+            Compare as duas respostas e identifique diferenças que indiquem acesso indevido.
+
+            Considere especialmente:
+
+            - Diferença no conteúdo entre a resposta original e a manipulada indicando acesso a dados de terceiros
+            - Retorno de dados sensíveis de outros usuários após manipulação de IDs (ex: id, user_id, account_id, order_id)
+            - Ausência de verificação de autorização evidenciada pelo status code 200 em recursos de terceiros
+            - Presença de informações pessoais identificáveis (PII) na resposta manipulada (ex: nome, email, CPF, endereço, telefone)
+            - Diferença significativa no tamanho do conteúdo entre as duas respostas
+            - Exposição de dados financeiros, médicos ou confidenciais na resposta manipulada
+            - Status code inesperado (200 ao invés de 403/404) ao acessar recursos de outros usuários
+            - Presença de identificadores sequenciais ou previsíveis na URL ou corpo da resposta manipulada
+
+            ## Formato da Resposta
+
+            Responda APENAS com um JSON válido, sem explicações fora do JSON:
+
+            {
+              "vulneravel": true ou false,
+              "tipo": "<horizontal | vertical | object-level | function-level | desconhecido>",
+              "dados_expostos": ["<lista de tipos de dados sensíveis identificados na resposta manipulada>"],
+              "identificador_manipulado": "<parâmetro ou identificador manipulado que causou o acesso indevido ou null>",
+              "diferenca_detectada": "<descrição objetiva da diferença entre a resposta original e a manipulada>",
+              "confianca": <float entre 0.0 e 1.0>,
+              "justificativa": "<explicação técnica detalhada comparando as duas respostas>"
+            }
+
+            - vulneravel: indica se há indício de IDOR
+            - tipo: classificação do vetor de acesso identificado (horizontal = mesmo nível, vertical = privilégio maior)
+            - dados_expostos: tipos de dados sensíveis encontrados na resposta manipulada (ex: email, CPF, dados bancários)
+            - identificador_manipulado: parâmetro cujo valor foi alterado para acessar o recurso indevido
+            - diferenca_detectada: resumo objetivo das diferenças entre as duas respostas que evidenciam o IDOR
+            - confianca: nível de confiança da análise
+            - justificativa: explicação clara comparando as evidências das duas respostas
+            """.formatted(
+                    original.url(), original.statusCode(), original.responseTime(), original.contentLength(), original.header(), original.body(),
+                    manipulated.url(), manipulated.payload(), manipulated.statusCode(), manipulated.responseTime(), manipulated.contentLength(), manipulated.header(), manipulated.body()
+            );
+}
+
+
 }
 
 
