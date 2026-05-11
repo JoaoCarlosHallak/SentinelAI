@@ -47,7 +47,7 @@ import com.hallak.SentinelAI.services.xss.XssScanService;
 			//lfiScanService.scanAndBasicFilter("http://localhost/vulnerabilities/fi/?page=INJECT").subscribe();
 			//openRedirectScanService.scanAndBasicFilter("http://localhost/vulnerabilities/redirect/?page=INJECT").subscribe();
 			//commandInjectionScanService.handleCommandInjectionScanner("http://localhost/vulnerabilities/command_injection/?page=INJECT").subscribe();
-			insecureHeadersScanService.scanAndBasicFilter("https://www.saojoaodelrei.mg.gov.br/").subscribe();
+			//insecureHeadersScanService.scanAndBasicFilter("https://www.saojoaodelrei.mg.gov.br/").subscribe();
 			
 		}
 	}

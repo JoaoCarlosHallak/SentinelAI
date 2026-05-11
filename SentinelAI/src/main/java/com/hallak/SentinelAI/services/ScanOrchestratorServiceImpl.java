@@ -6,18 +6,12 @@ import org.springframework.stereotype.Service;
 import com.hallak.SentinelAI.dtos.ScanRequest;
 import com.hallak.SentinelAI.dtos.ScanType;
 import com.hallak.SentinelAI.services.ci.CommandInjectionScanService;
-import com.hallak.SentinelAI.services.cs.CorsScanService;
 import com.hallak.SentinelAI.services.csrf.CsrfScanService;
 import com.hallak.SentinelAI.services.idor.IdorScanService;
 import com.hallak.SentinelAI.services.ih.InsecureHeadersScanService;
-import com.hallak.SentinelAI.services.jwt.JwtScanService;
 import com.hallak.SentinelAI.services.lfi.LfiScanService;
 import com.hallak.SentinelAI.services.op.OpenRedirectScanService;
-import com.hallak.SentinelAI.services.rl.RateLimitScanService;
-import com.hallak.SentinelAI.services.sd.SensitiveDataScanService;
 import com.hallak.SentinelAI.services.sqli.SqlInjectionScanService;
-import com.hallak.SentinelAI.services.ssrf.SsrfScanService;
-import com.hallak.SentinelAI.services.wa.WeakAuthScanService;
 import com.hallak.SentinelAI.services.xss.XssScanService;
 
 import reactor.core.publisher.Mono;
@@ -30,32 +24,21 @@ public class ScanOrchestratorServiceImpl implements ScanOrchestratorService {
     private final SqlInjectionScanService sqlInjectionScanService;
     private final OpenRedirectScanService openRedirectScanService;
     private final InsecureHeadersScanService insecureHeadersScanService;
-    private final SsrfScanService ssrfScanService;
-    private final CorsScanService corsScanService;
     private final CommandInjectionScanService commandInjectionScanService;
-    private final WeakAuthScanService weakAuthScanService;
-    private final SensitiveDataScanService sensitiveDataScanService;
     private final CsrfScanService csrfScanService;
-    private final RateLimitScanService rateLimitScanService;
     private final IdorScanService idorScanService;
-    private final JwtScanService jwtScanService;
+
 
     @Autowired
-    public ScanOrchestratorServiceImpl(XssScanService xssScanService, LfiScanService lfiScanService, SqlInjectionScanService sqlInjectionScanService, OpenRedirectScanService openRedirectScanService, InsecureHeadersScanService insecureHeadersScanService, SsrfScanService ssrfScanService, CorsScanService corsScanService, CommandInjectionScanService commandInjectionScanService, WeakAuthScanService weakAuthScanService, SensitiveDataScanService sensitiveDataScanService, CsrfScanService csrfScanService, RateLimitScanService rateLimitScanService, IdorScanService idorScanService, JwtScanService jwtScanService) {
+    public ScanOrchestratorServiceImpl(XssScanService xssScanService, LfiScanService lfiScanService, SqlInjectionScanService sqlInjectionScanService, OpenRedirectScanService openRedirectScanService, InsecureHeadersScanService insecureHeadersScanService, CommandInjectionScanService commandInjectionScanService, CsrfScanService csrfScanService, IdorScanService idorScanService) {
         this.xssScanService = xssScanService;
         this.lfiScanService = lfiScanService;
         this.sqlInjectionScanService = sqlInjectionScanService;
         this.openRedirectScanService = openRedirectScanService;
         this.insecureHeadersScanService = insecureHeadersScanService;
-        this.ssrfScanService = ssrfScanService;
-        this.corsScanService = corsScanService;
         this.commandInjectionScanService = commandInjectionScanService;
-        this.weakAuthScanService = weakAuthScanService;
-        this.sensitiveDataScanService = sensitiveDataScanService;
         this.csrfScanService = csrfScanService;
-        this.rateLimitScanService = rateLimitScanService;
         this.idorScanService = idorScanService;
-        this.jwtScanService = jwtScanService;
     }
 
 
@@ -79,32 +62,14 @@ public class ScanOrchestratorServiceImpl implements ScanOrchestratorService {
                 case INSECURE_HEADERS -> {
                     return insecureHeadersScanService.handleInsecureHeadersScanner(target);
                 }
-                case SSRF -> {
-                    return ssrfScanService.handleSsrfScanner(target);
-                }
-                case CORS_MISCONFIGURATION -> {
-                    return corsScanService.handleCorsScanner(target);
-                }
                 case COMMAND_INJECTION -> {
                     return commandInjectionScanService.handleCommandInjectionScanner(target);
-                }
-                case WEAK_AUTHENTICATION -> {
-                    return weakAuthScanService.handleWeakAuthScanner(target);
-                }
-                case SENSITIVE_DATA_EXPOSURE -> {
-                    return sensitiveDataScanService.handleSensitiveDataScanner(target);
                 }
                 case CSRF -> {
                     return csrfScanService.handleCsrfScanner(target);
                 }
-                case RATE_LIMIT_BYPASS -> {
-                    return rateLimitScanService.handleRateLimitScanner(target);
-                }
                 case IDOR -> {
                     return idorScanService.handleIdorScanner(target);
-                }
-                case JWT_MISCONFIGURATION -> {
-                    return jwtScanService.handleJwtScanner(target);
                 }
                 default -> throw new IllegalArgumentException("Unsupported scan type: " + scanType);
             }
